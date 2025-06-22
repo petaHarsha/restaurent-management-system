@@ -26,3 +26,58 @@ A comprehensive system for managing restaurant operations including table bookin
 - RESTful API design
 
 ## Project Structure
+restaurant-system/
+├──restaurant-backend/                  # Node.js/Express backend
+│   ├── config/
+│   │   ├── db.js             # Database configuration
+│   │   └── config.js         # App configuration
+│   ├── controllers/
+│   │   ├── adminController.js # Admin panel logic
+│   │   ├── authController.js  # Authentication logic
+│   │   ├── bookingController.js # Booking management
+│   │   ├── menuController.js  # Menu management
+│   │   └── staffController.js # Staff management
+│   ├── models/
+│   │   ├── User.js           # User model
+│   │   ├── MenuItem.js       # Menu items
+│   │   ├── Staff.js          # Staff members
+│   │   ├── Inventory.js      # Inventory items
+│   │   ├── Booking.js        # Reservations
+│   │   └── Table.js          # Restaurant tables
+│   ├── routes/
+│   │   ├── adminRoutes.js    # Admin panel routes
+│   │   ├── authRoutes.js     # Authentication routes
+│   │   ├── bookingRoutes.js  # Booking routes
+│   │   ├── menuRoutes.js     # Menu routes
+│   │   └── staffRoutes.js    # Staff routes
+│   ├── middlewares/
+│   │   └── auth.js           # Authentication middleware
+│   ├──utils/
+│   │   └── logger.js         # loggers in the utils
+│   │   └── validation.js     # jalidation of the coe
+|   |── .env                  # Environment variables
+│   ├── server.js             # Main server file
+│   └── package.json          # Dependencies
+└── retaurent-frontend/                 # Frontend code
+    ├── assets/
+    │   ├── css/              # Global styles
+    │   ├── js/               # Global scripts
+    │   └── images/           # All images
+    ├── admin/
+    │   ├── admin.html        # Admin dashboard
+    │   ├── admin.css         # Admin-specific styles
+    │   └── admin.js          # Admin-specific scripts
+    ├── booking/
+    │   ├── booking.html      # Booking interface
+    │   ├── booking.css       # Booking styles
+    │   └── booking.js        # Booking logic
+    ├── menu/
+    │   ├── menu.html         # Menu interface
+    │   ├── menu.css          # Menu styles
+    │   └── menu.js           # Menu logic
+    ├── auth/
+    │   ├── login.html        # Login page
+    │   ├── register.html     # Registration page
+    │   ├── auth.css          # Auth styles
+    │   └── auth.js           # Auth logic
+    └── index.html            # Landing page
