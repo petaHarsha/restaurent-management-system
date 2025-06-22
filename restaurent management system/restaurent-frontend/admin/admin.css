@@ -1,0 +1,70 @@
+// Sample data for all sections
+let data = {
+    menu: {
+        "Starters": [
+            {"name": "Tomato Soup", "price": 90, "desc": "Classic creamy tomato soup with herbs"},
+            // ... other menu items
+        ],
+        // ... other categories
+    },
+    staff: [
+        {"id": "ST001", "name": "Rajesh Kumar", "email": "rajesh@restaurant.com", "role": "Manager", "phone": "9876543210"},
+        // ... other staff
+    ],
+    inventory: [
+        {"id": "INV001", "name": "Tomatoes", "category": "Vegetables", "quantity": 10, "unit": "kg", "supplier": "Local Farm", "threshold": 2},
+        // ... other inventory items
+    ],
+    analytics: {
+        sales: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            data: [50000, 60000, 75000, 65000, 80000, 90000]
+        },
+        // ... other analytics data
+    }
+};
+
+// Current selected items for editing
+let selectedItem = null;
+let selectedStaff = null;
+let selectedInventory = null;
+
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+    initAdminPanel();
+    renderMenuItems();
+    renderStaffMembers();
+    renderInventoryItems();
+    setupEventListeners();
+    initCharts();
+});
+
+function initAdminPanel() {
+    // Tab switching functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.tab').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // Activate selected tab
+            this.classList.add('active');
+            document.getElementById(tabId + '-tab').classList.add('active');
+        });
+    });
+    
+    // Back to site button
+    document.getElementById('back-to-site').addEventListener('click', function() {
+        window.location.href = '../index.html';
+    });
+}
+
+// Add all other functions from your original file (renderMenuItems, renderStaffMembers, etc.)

@@ -1,0 +1,72 @@
+// Sample data for users and tables
+const users = [
+    {
+        email: "test@example.com",
+        password: "password123",
+        name: "Test User",
+        phone: "1234567890"
+    }
+];
+
+const tables = [
+    { id: 1, number: "Table 1", capacity: 4, location: "Main Dining" },
+    // ... other tables
+];
+
+// Current state
+let currentUser = null;
+let selectedDate = null;
+let selectedTime = null;
+let selectedTable = null;
+let selectedGuests = null;
+let currentMonth = new Date();
+
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('currentUser')) {
+        currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        showBookingPage();
+    }
+    
+    setupEventListeners();
+    generateCalendar(currentMonth);
+});
+
+function setupEventListeners() {
+    // Admin login
+    document.getElementById('admin-login-btn').addEventListener('click', promptAdminPassword);
+    
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.auth-tab').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // Hide all forms
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Activate selected tab
+            this.classList.add('active');
+            document.getElementById(tabId + '-form').classList.add('active');
+        });
+    });
+    
+    // Add all other event listeners from your original file
+}
+
+function promptAdminPassword() {
+    const password = prompt("Please enter admin password:");
+    if (password === "admin123") {
+        window.location.href = "../admin/admin.html?admin=true";
+    } else if (password !== null) {
+        alert("Incorrect admin password");
+    }
+}
+
+// Add all other functions from your original file

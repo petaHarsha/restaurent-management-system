@@ -1,0 +1,56 @@
+// Enhanced mock data with more details
+let users = [
+    {
+        email: "test@example.com", 
+        password: "1234", 
+        name: "Test User",
+        phone: "1234567890",
+        bookings: [
+            // ... booking data
+        ], 
+        preferences: "Vegetarian, No onion no garlic",
+        ratings: [
+            { date: "2024-06-02", rating: 4, comment: "Great food but service was slow" }
+        ]
+    }
+];
+
+let currentUser = null;
+let selectedItems = [];
+
+let menu = {
+    "Starters": [
+        {"name": "Tomato Soup", "price": 90, "desc": "Classic creamy tomato soup with herbs"},
+        // ... other menu items
+    ],
+    // ... other categories
+};
+
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+    renderMenu();
+    setupEventListeners();
+    
+    if (sessionStorage.getItem('currentUser')) {
+        currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        showProfile();
+    }
+});
+
+function setupEventListeners() {
+    // Admin login
+    document.getElementById('admin-login-btn').addEventListener('click', promptAdminPassword);
+    
+    // Add all other event listeners from your original file
+}
+
+function promptAdminPassword() {
+    const password = prompt("Please enter admin password:");
+    if (password === "admin123") {
+        window.location.href = "../admin/admin.html?admin=true";
+    } else if (password !== null) {
+        alert("Incorrect admin password");
+    }
+}
+
+// Add all other functions from your original file

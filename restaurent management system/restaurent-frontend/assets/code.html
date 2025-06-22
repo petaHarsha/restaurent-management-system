@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management System</title>
+    <link rel="icon" href="assets/images/common/favicon.ico">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #ff6b6b;
+            --primary-dark: #ff5252;
+            --secondary: #4ecdc4;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --success: #20c997;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Image Styles */
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .lazy-img {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-img.loaded {
+            opacity: 1;
+        }
+
+        .img-container {
+            position: relative;
+            padding-top: 75%; /* 4:3 aspect ratio */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('assets/images/home/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Menu Section */
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-content {
+            padding: 15px;
+        }
+
+        .menu-content h3 {
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Admin Dashboard Preview */
+        .admin-preview {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 40px 0;
+        }
+
+        .admin-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .admin-icon {
+            text-align: center;
+        }
+
+        .admin-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* Booking Section */
+        .booking-example {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            align-items: center;
+        }
+
+        .table-card {
+            flex: 1;
+            max-width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Utility Classes */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/images/common/logo.png" alt="Restaurant Logo" class="logo">
+            <h1>Restaurant Management System</h1>
+            <p>Complete solution for managing your restaurant operations</p>
+        </header>
+
+        <section class="text-center">
+            <h2>Our Featured Menu Items</h2>
+            <div class="menu-items">
+                <!-- Menu Item 1 -->
+                <div class="menu-card">
+                    <div class="img-container">
+                        <img data-src="assets/images/menu/items/tomato-soup.jpg" 
+                             alt="Creamy tomato soup with basil"
+                             class="lazy-img"
+                             loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Tomato Soup</h3>
+                        <p>Classic creamy tomato soup with fresh herbs</p>
+                        <span class="price">₹90</span>
+                        <button class="btn btn-primary mt-20">Add to Order</button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-card">
+                    <div class="img-container">
+                        <img data-src="assets/images/menu/items/paneer-tikka.jpg" 
+                             alt="Paneer tikka with mint chutney"
+                             class="lazy-img"
+                             loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Paneer Tikka</h3>
+                        <p>Cottage cheese marinated in spices and grilled</p>
+                        <span class="price">₹180</span>
+                        <button class="btn btn-primary mt-20">Add to Order</button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-card">
+                    <div class="img-container">
+                        <img data-src="assets/images/menu/items/chicken-biryani.jpg" 
+                             alt="Chicken biryani with raita"
+                             class="lazy-img"
+                             loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Chicken Biryani</h3>
+                        <p>Fragrant basmati rice with tender chicken pieces</p>
+                        <span class="price">₹280</span>
+                        <button class="btn btn-primary mt-20">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin-preview">
+            <h2 class="text-center">Admin Dashboard</h2>
+            <p class="text-center">Manage all aspects of your restaurant with our powerful admin panel</p>
+            
+            <div class="admin-icons">
+                <div class="admin-icon">
+                    <img src="assets/images/admin/dashboard-icons/menu-icon.png" alt="Menu Management">
+                    <p>Menu Management</p>
+                </div>
+                <div class="admin-icon">
+                    <img src="assets/images/admin/dashboard-icons/staff-icon.png" alt="Staff Management">
+                    <p>Staff Management</p>
+                </div>
+                <div class="admin-icon">
+                    <img src="assets/images/admin/dashboard-icons/inventory-icon.png" alt="Inventory">
+                    <p>Inventory</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-center">Table Booking System</h2>
+            <div class="booking-example">
+                <div class="table-card">
+                    <div class="img-container">
+                        <img src="assets/images/booking/table-1.jpg" 
+                             alt="Table by the window"
+                             loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Window Table</h3>
+                        <p>Seats: 4</p>
+                        <button class="btn btn-secondary mt-20">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="img-container">
+                        <img src="assets/images/booking/table-2.jpg" 
+                             alt="Private booth table"
+                             loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Private Booth</h3>
+                        <p>Seats: 6</p>
+                        <button class="btn btn-secondary mt-20">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Lazy Loading Images
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load critical images first
+            const logo = new Image();
+            logo.src = 'assets/images/common/logo.png';
+            
+            const heroBg = new Image();
+            heroBg.src = 'assets/images/home/hero-bg.jpg';
+
+            // Lazy load other images
+            const lazyImages = document.querySelectorAll('img.lazy-img');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+
+            // Responsive image handling
+            function handleResponsiveImages() {
+                const menuImages = document.querySelectorAll('.menu-card img');
+                const screenWidth = window.innerWidth;
+                
+                menuImages.forEach(img => {
+                    const container = img.closest('.img-container');
+                    if (screenWidth < 768) {
+                        container.style.paddingTop = '100%'; // 1:1 aspect ratio for mobile
+                    } else {
+                        container.style.paddingTop = '75%'; // 4:3 aspect ratio for desktop
+                    }
+                });
+            }
+
+            window.addEventListener('resize', handleResponsiveImages);
+            handleResponsiveImages();
+        });
+
+        // Image error fallback
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'assets/images/common/placeholder-food.jpg';
+                e.target.alt = 'Image not available';
+                e.target.classList.remove('lazy-img');
+            }
+        }, true);
+    </script>
+</body>
+</html>
